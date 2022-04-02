@@ -1,31 +1,14 @@
 import {StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
-    inputbar: {
-        backgroundColor:"#ffffff",
-        borderRadius:10,
+    alertButton: {
+        backgroundColor: "lightgreen",
+        borderWidth:2,
         borderColor:"red",
-        borderWidth:1,
-    },
-    textStyle: {
-        color:"black",
-        backgroundColor:"lightgreen",
-        width:"50%",
-        height:40
-    },
-    touchableOpac: {
-        width:"100%",
-        display:"flex",
-        alignItems:"center",
-        marginTop:40,
-    },
-    pressableNewStyle: {
-        width:"100%",
-        display:"flex",
-        alignItems:"center",
-        marginTop:40,
-        background:"red"
-    },
+        borderRadius:10,
+        padding:10,
+        alignSelf:"flex-start"
+    }
 })
 
 export default styles

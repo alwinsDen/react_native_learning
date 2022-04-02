@@ -1,144 +1,23 @@
-import React, {useState} from "react"
-import {Button, RefreshControl, ScrollView, SectionList, Text, View} from "react-native"
-import styles from "./styles/styles";
+import React from "react"
+import {Image, ImageBackground, View} from "react-native";
+import gta from "./assets/gta.jpg"
 
 const App = () => {
-    const [sample, setSample] = useState(0)
-    const [refreshState, setRefreshState] = useState(false);
-    const testCases = [
-        {key: 0, name: "alwin"},
-        {key: 1, name: "alwin"},
-        {key: 2, name: "alwin"},
-        {key: 3, name: "alwin"},
-        {key: 4, name: "alwin"},
-        {key: 5, name: "alwin"},
-        {key: 6, name: "alwin"},
-        {key: 7, name: "alwin"},
-        {key: 8, name: "alwin"},
-        {key: 9, name: "alwin"},
-        {key: 10, name: "alwin"}
-    ]
+    return <ImageBackground
+        source={{uri:"https://images.pexels.com/photos/11426821/pexels-photo-11426821.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"}}
+        style={{
+        width: "100%",
+        height:"100%",
 
-    const sectionListData = [
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-    ]
-    return (
-        <ScrollView
-            horizontal={false}
-            refreshControl={
-                <RefreshControl
-                    refreshing={refreshState}
-                    onRefresh={(e) => {
-                        setRefreshState(!refreshState)
-                    }}
-                    colors={["#000000", "#ffffff"]}
-                />
-            }
-            style={{
-                width: "100%"
-            }}
-        >
-
-            <View style={styles.mainView}
-
-            >
-                <Text style={styles.text}
-                >
-                    This here is a test {sample}
-                </Text>
-
-                {/*section list*/}
-                <SectionList
-                    keyExtractor={(item, index) => index.toString()+item}
-                    sections={sectionListData}
-                    renderItem={({item}) => (
-                        <View>
-                            <Text style={styles.loopText}>{item}</Text>
-                        </View>
-                    )}
-                    renderSectionHeader={({section})=> (
-                        <Text style={{
-                            color:"red",
-                            textAlign:"center"
-                        }}>
-                            {section.title}
-                        </Text>
-                    )}
-                />
-
-
-                {/*<ScrollView*/}
-                {/*    horizontal={false}*/}
-                {/*    refreshControl={*/}
-                {/*        <RefreshControl*/}
-                {/*            refreshing={refreshState}*/}
-                {/*            onRefresh={(e) => {*/}
-                {/*                setRefreshState(!refreshState)*/}
-                {/*            }}*/}
-                {/*            colors={["#000000", "#ffffff"]}*/}
-                {/*        />*/}
-                {/*    }*/}
-                {/*    style={{*/}
-                {/*        width: "100%"*/}
-                {/*    }}>*/}
-
-
-                {/*{*/}
-                {/*    testCases.map((item, index) => {*/}
-                {/*        return <Text*/}
-                {/*            key={item.key}*/}
-                {/*            style={styles.loopText}*/}
-                {/*        >{item.name}</Text>*/}
-                {/*    })*/}
-                {/*}*/}
-
-                {/*flatlist component*/}
-                {/*<FlatList*/}
-                {/*    horizontal*/}
-                {/*    inverted*/}
-                {/*    data={testCases}*/}
-                {/*    keyExtractor={(item, index) => index.toString()}*/}
-                {/*    renderItem={({item}) => (*/}
-                {/*        <View>*/}
-                {/*            <Text style={styles.loopText}>{item.name}</Text>*/}
-                {/*        </View>*/}
-                {/*    )}*/}
-                {/*/>*/}
-
-                {/*</ScrollView>*/}
-                <Button
-                    style={styles.button}
-                    title={"CLick me"}
-                    accessibilityLabel={"Click here for details"}
-                    onPress={() => {
-                        // Linking.openURL("https://www.instagram.com/");
-                        setSample(data => (data + 1));
-                    }}
-                >
-                </Button>
-            </View>
-        </ScrollView>
-    )
+    }}>
+        <Image source={gta}
+               style={{
+                   height: 300,
+                   aspectRatio:1,
+               }}
+               resizeMode="stretch"
+        />
+    </ImageBackground>
 }
-
 
 export default App;

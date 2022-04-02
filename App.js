@@ -1,143 +1,79 @@
 import React, {useState} from "react"
-import {Button, RefreshControl, ScrollView, SectionList, Text, View} from "react-native"
+import {Pressable, Text, TextInput, ToastAndroid, TouchableHighlight, TouchableOpacity, View} from "react-native";
 import styles from "./styles/styles";
 
 const App = () => {
-    const [sample, setSample] = useState(0)
-    const [refreshState, setRefreshState] = useState(false);
-    const testCases = [
-        {key: 0, name: "alwin"},
-        {key: 1, name: "alwin"},
-        {key: 2, name: "alwin"},
-        {key: 3, name: "alwin"},
-        {key: 4, name: "alwin"},
-        {key: 5, name: "alwin"},
-        {key: 6, name: "alwin"},
-        {key: 7, name: "alwin"},
-        {key: 8, name: "alwin"},
-        {key: 9, name: "alwin"},
-        {key: 10, name: "alwin"}
-    ]
 
-    const sectionListData = [
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-        {
-            title: "test",
-            data: ["item1", "item2", "item3"]
-        },
-    ]
-    return (
-        <ScrollView
-            horizontal={false}
-            refreshControl={
-                <RefreshControl
-                    refreshing={refreshState}
-                    onRefresh={(e) => {
-                        setRefreshState(!refreshState)
-                    }}
-                    colors={["#000000", "#ffffff"]}
-                />
+    const [inputText, setInputText] = useState("test data")
+    return <View>
+        <Text>
+            This is test
+        </Text>
+        <TextInput
+            multiline
+            style={styles.inputbar}
+            placeholder={"enter your email here"}
+            autoCapitalize={"characters"}
+            defaultValue={inputText}
+            onTextInput={(text) => {
+                setInputText(text)
             }
-            style={{
-                width: "100%"
-            }}
+            }
+            // editable={false}
+            secureTextEntry={true}
+        />
+
+        {/*opacity reduces when clicked*/}
+        <TouchableOpacity
+            style={styles.touchableOpac}
+            onPress={() => console.log("This was clicked")}
+            activeOpacity={0.5} //opcatity on clicking
         >
+            <Text style={styles.textStyle}>
+                Herro there
+            </Text>
+        </TouchableOpacity>
 
-            <View style={styles.mainView}
-
-            >
-                <Text style={styles.text}
-                >
-                    This here is a test {sample}
-                </Text>
-
-                {/*section list*/}
-                <SectionList
-                    keyExtractor={(item, index) => index.toString()+item}
-                    sections={sectionListData}
-                    renderItem={({item}) => (
-                        <View>
-                            <Text style={styles.loopText}>{item}</Text>
-                        </View>
-                    )}
-                    renderSectionHeader={({section})=> (
-                        <Text style={{
-                            color:"red",
-                            textAlign:"center"
-                        }}>
-                            {section.title}
-                        </Text>
-                    )}
-                />
+        {/*    highlight does the same thing as opacity but can have custom color*/}
+        <TouchableHighlight
+            style={{
+                ...styles.touchableOpac,
+            }
+            }
+            onPress={() => console.log("This was clicked maybe")}
+            underlayColor={"#dddddd"} //set custom color to opacity
+        >
+            <Text style={styles.textStyle}>
+                Herro there
+            </Text>
+        </TouchableHighlight>
 
 
-                {/*<ScrollView*/}
-                {/*    horizontal={false}*/}
-                {/*    refreshControl={*/}
-                {/*        <RefreshControl*/}
-                {/*            refreshing={refreshState}*/}
-                {/*            onRefresh={(e) => {*/}
-                {/*                setRefreshState(!refreshState)*/}
-                {/*            }}*/}
-                {/*            colors={["#000000", "#ffffff"]}*/}
-                {/*        />*/}
-                {/*    }*/}
-                {/*    style={{*/}
-                {/*        width: "100%"*/}
-                {/*    }}>*/}
+        {/*pressed component amazing*/}
+        <Pressable
+            onLongPress={() => {
+                ToastAndroid.show("A pikachu appeared nearby !", ToastAndroid.SHORT);
+            }
+            }
+            delayLongPress={2000}
+            // additional pressable padding around button
+            hitSlop={{
+                top: 10, bottom: 10, right: 10, left: 10
+            }
+            }
+            android_ripple={{color:"#b9b9b9"}}
+            style={({pressed}) => [
+                {backgroundColor: pressed ? "#ffffff" : "#000000"},
+                styles.touchableOpac
+            ]}
+        >
+            <Text style={styles.textStyle}>
+                Here is the test text
+            </Text>
+        </Pressable>
 
 
-                {/*{*/}
-                {/*    testCases.map((item, index) => {*/}
-                {/*        return <Text*/}
-                {/*            key={item.key}*/}
-                {/*            style={styles.loopText}*/}
-                {/*        >{item.name}</Text>*/}
-                {/*    })*/}
-                {/*}*/}
-
-                {/*flatlist component*/}
-                {/*<FlatList*/}
-                {/*    horizontal*/}
-                {/*    inverted*/}
-                {/*    data={testCases}*/}
-                {/*    keyExtractor={(item, index) => index.toString()}*/}
-                {/*    renderItem={({item}) => (*/}
-                {/*        <View>*/}
-                {/*            <Text style={styles.loopText}>{item.name}</Text>*/}
-                {/*        </View>*/}
-                {/*    )}*/}
-                {/*/>*/}
-
-                {/*</ScrollView>*/}
-                <Button
-                    style={styles.button}
-                    title={"CLick me"}
-                    accessibilityLabel={"Click here for details"}
-                    onPress={() => {
-                        // Linking.openURL("https://www.instagram.com/");
-                        setSample(data => (data + 1));
-                    }}
-                >
-                </Button>
-            </View>
-        </ScrollView>
-    )
+    </View>
 }
 
 

@@ -1,28 +1,31 @@
 import {StyleSheet} from "react-native";
 
 const styles = StyleSheet.create({
-    mainView: {
-        backgroundColor: "#000000",
-        display: "flex",
-        height: "100%",
-        alignItems: "center"
-    },
-    text: {
-        color: "#ffffff",
-        fontSize: 30
-    },
-    button: {
-        backgroundColor: "#d2d2d2",
-        padding: "1",
-        margin:"10"
-    },
-    loopText:{
+    inputbar: {
         backgroundColor:"#ffffff",
-        margin:10,
-        padding:10,
+        borderRadius:10,
+        borderColor:"red",
+        borderWidth:1,
+    },
+    textStyle: {
+        color:"black",
+        backgroundColor:"lightgreen",
+        width:"50%",
+        height:40
+    },
+    touchableOpac: {
         width:"100%",
-        textAlign:"center"
-    }
+        display:"flex",
+        alignItems:"center",
+        marginTop:40,
+    },
+    pressableNewStyle: {
+        width:"100%",
+        display:"flex",
+        alignItems:"center",
+        marginTop:40,
+        background:"red"
+    },
 })
 
 export default styles

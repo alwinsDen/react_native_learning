@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {Button, RefreshControl, ScrollView, Text, View} from "react-native"
+import {Button, RefreshControl, ScrollView, SectionList, Text, View} from "react-native"
 import styles from "./styles/styles";
 
 const App = () => {
@@ -18,46 +18,125 @@ const App = () => {
         {key: 9, name: "alwin"},
         {key: 10, name: "alwin"}
     ]
+
+    const sectionListData = [
+        {
+            title: "test",
+            data: ["item1", "item2", "item3"]
+        },
+        {
+            title: "test",
+            data: ["item1", "item2", "item3"]
+        },
+        {
+            title: "test",
+            data: ["item1", "item2", "item3"]
+        },
+        {
+            title: "test",
+            data: ["item1", "item2", "item3"]
+        },
+        {
+            title: "test",
+            data: ["item1", "item2", "item3"]
+        },
+    ]
     return (
-        <View style={styles.mainView}>
-            <Text style={styles.text}
+        <ScrollView
+            horizontal={false}
+            refreshControl={
+                <RefreshControl
+                    refreshing={refreshState}
+                    onRefresh={(e) => {
+                        setRefreshState(!refreshState)
+                    }}
+                    colors={["#000000", "#ffffff"]}
+                />
+            }
+            style={{
+                width: "100%"
+            }}
+        >
+
+            <View style={styles.mainView}
+
             >
-                This here is a test {sample}
-            </Text>
-            <ScrollView
-                horizontal={false}
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshState}
-                        onRefresh={(e) => {
-                            setRefreshState(!refreshState)
-                        }
-                        }
-                    />
-                }
-                style={{
-                    width: "100%"
-                }}>
-                {
-                    testCases.map((item, index) => {
-                        return <Text
-                            key={item.key}
-                            style={styles.loopText}
-                        >{item.name}</Text>
-                    })
-                }
-            </ScrollView>
-            <Button
-                style={styles.button}
-                title={"CLick me"}
-                accessibilityLabel={"Click here for details"}
-                onPress={() => {
-                    // Linking.openURL("https://www.instagram.com/");
-                    setSample(data => (data + 1));
-                }}
-            >
-            </Button>
-        </View>
+                <Text style={styles.text}
+                >
+                    This here is a test {sample}
+                </Text>
+
+                {/*section list*/}
+                <SectionList
+                    keyExtractor={(item, index) => index.toString()+item}
+                    sections={sectionListData}
+                    renderItem={({item}) => (
+                        <View>
+                            <Text style={styles.loopText}>{item}</Text>
+                        </View>
+                    )}
+                    renderSectionHeader={({section})=> (
+                        <Text style={{
+                            color:"red",
+                            textAlign:"center"
+                        }}>
+                            {section.title}
+                        </Text>
+                    )}
+                />
+
+
+                {/*<ScrollView*/}
+                {/*    horizontal={false}*/}
+                {/*    refreshControl={*/}
+                {/*        <RefreshControl*/}
+                {/*            refreshing={refreshState}*/}
+                {/*            onRefresh={(e) => {*/}
+                {/*                setRefreshState(!refreshState)*/}
+                {/*            }}*/}
+                {/*            colors={["#000000", "#ffffff"]}*/}
+                {/*        />*/}
+                {/*    }*/}
+                {/*    style={{*/}
+                {/*        width: "100%"*/}
+                {/*    }}>*/}
+
+
+                {/*{*/}
+                {/*    testCases.map((item, index) => {*/}
+                {/*        return <Text*/}
+                {/*            key={item.key}*/}
+                {/*            style={styles.loopText}*/}
+                {/*        >{item.name}</Text>*/}
+                {/*    })*/}
+                {/*}*/}
+
+                {/*flatlist component*/}
+                {/*<FlatList*/}
+                {/*    horizontal*/}
+                {/*    inverted*/}
+                {/*    data={testCases}*/}
+                {/*    keyExtractor={(item, index) => index.toString()}*/}
+                {/*    renderItem={({item}) => (*/}
+                {/*        <View>*/}
+                {/*            <Text style={styles.loopText}>{item.name}</Text>*/}
+                {/*        </View>*/}
+                {/*    )}*/}
+                {/*/>*/}
+
+                {/*</ScrollView>*/}
+                <Button
+                    style={styles.button}
+                    title={"CLick me"}
+                    accessibilityLabel={"Click here for details"}
+                    onPress={() => {
+                        // Linking.openURL("https://www.instagram.com/");
+                        setSample(data => (data + 1));
+                    }}
+                >
+                </Button>
+            </View>
+        </ScrollView>
     )
 }
 

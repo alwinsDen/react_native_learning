@@ -1,23 +1,40 @@
 import React from "react"
-import {Image, ImageBackground, View} from "react-native";
-import gta from "./assets/gta.jpg"
+import {createStackNavigator} from "@react-navigation/stack";
+import {NavigationContainer} from "@react-navigation/native";
+import Comp1 from "./pages/Comp1";
+import Comp2 from "./pages/Comp2";
+import Comp3 from "./pages/Comp3";
+
+const Stack = createStackNavigator();
 
 const App = () => {
-    return <ImageBackground
-        source={{uri:"https://images.pexels.com/photos/11426821/pexels-photo-11426821.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260"}}
-        style={{
-        width: "100%",
-        height:"100%",
+    return <NavigationContainer>
+        <Stack.Navigator
+            // TO remove header globally and other options
 
-    }}>
-        <Image source={gta}
-               style={{
-                   height: 300,
-                   aspectRatio:1,
-               }}
-               resizeMode="stretch"
-        />
-    </ImageBackground>
+            // screenOptions={{
+            //     header: () => null
+            // }}
+        >
+            <Stack.Screen
+                name={"Screen_A"}
+                component={Comp1}
+                options={{
+                    // title:"herro there" there are many options,
+                    header: () => null //removes header for Screen_A
+                }}
+            />
+            <Stack.Screen
+                name={"Screen_B"}
+                component={Comp2}
+            />
+            <Stack.Screen
+                name={"Screen_C"}
+                component={Comp3}
+            >
+            </Stack.Screen>
+        </Stack.Navigator>
+    </NavigationContainer>
 }
 
 export default App;

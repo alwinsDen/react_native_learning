@@ -3,10 +3,18 @@ import {Button, Text, View} from "react-native";
 
 const Comp1 = ({navigation}) => {
     return <View>
-        <Text>Tetse</Text>
+        <Text
+        style={{
+            fontSize:30,
+            fontFamily:"Urbanist-Medium"
+        }}
+        >Tetse</Text>
         <Button title={"GO to B"}
                 onPress={() => {
-                    navigation.navigate("Screen_B")
+                    navigation.navigate("Screen_B", {
+                        message: "This is from A",
+                        itemId: 12
+                    })
                 }
                 }
         >

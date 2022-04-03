@@ -4,23 +4,11 @@ import {Button, Text, View} from "react-native";
 const Comp1 = ({navigation}) => {
     return <View>
         <Text>Tetse</Text>
-        <Button title={"GO to B"}
+        <Button title={"Open Drawer"}
                 onPress={() => {
-                    navigation.navigate("Screen_B")
+                    navigation.toggleDrawer(); //to open drawer
                 }
                 }
-        >
-        </Button>
-
-        {/*REPLACES meaning next component has no back button*/}
-        <Button
-            style={{
-                marginTop: 10
-            }}
-            title={"Replace with C"}
-            onPress={() => {
-                navigation.replace("Screen_C")
-            }}
         >
         </Button>
     </View>
